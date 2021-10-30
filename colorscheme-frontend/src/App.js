@@ -3,7 +3,7 @@ import './App.scss';
 
 function App() {
   const [preview,setPreview] = useState()
-  const [theme, setTheme] = useState([])
+  const [theme, setTheme] = useState({"colors":[],"dark":[]})
   function handleFileInput(e) {
     console.log(e.target.files[0])
     if(e.target.files[0]) setPreview(URL.createObjectURL(e.target.files[0]));
@@ -44,7 +44,14 @@ function App() {
       </div>
       <div className="block theme">
         {
-          theme.map(hex => <span style={{backgroundColor:hex}}>{hex}</span>)
+          Object.keys(theme).map(key => 
+            
+          <div className={"colors "+key}>
+            {
+              theme[key].map(hex => <span style={{backgroundColor:hex}}>{hex}</span>)
+            }
+          </div>
+        )
         }
       </div>
     </div>
